@@ -2,7 +2,7 @@ from flask import Flask, request, make_response, redirect, render_template
 
 app = Flask(__name__) #Refering the flask server to this archive
 
-items =["ITEM1", "ITEM2", "ITEM3", "ITEM4" ]
+items =["rice", "bread", "pupetter", "tomate" ]
 @app.route("/inde")
 def index():              #Request object for obtaining all client information  
     user_ip_information = request.remote_addr
