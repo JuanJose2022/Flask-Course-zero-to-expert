@@ -6,6 +6,9 @@
     <title>{% block title %} Flask Aplication Web │ {% endblock %} </title>
 </head>
 <body>
+    <header>
+        {% include 'navbar.html' %} 
+    </header>
     {% block content %} 
     {% endblock %}
 </body>
