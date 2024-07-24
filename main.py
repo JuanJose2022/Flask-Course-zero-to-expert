@@ -3,6 +3,11 @@ from flask import Flask, request, make_response, redirect, render_template
 app = Flask(__name__) #Refering the flask server to this archive
 
 items =["rice", "bread", "pupetter", "tomate" ]
+
+@app.errorhandler(404)
+def not_found_endpoint(error):
+    return render_template('404.html', error=error)
+
 @app.route("/inde")
 def index():              #Request object for obtaining all client information  
     user_ip_information = request.remote_addr
