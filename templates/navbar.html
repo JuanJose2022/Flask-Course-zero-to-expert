@@ -1,3 +1,4 @@
+<!--
 <nav>
     <ul>
         <img src="{{url_for('static', filename='images/flask_font.png') }}" alt="">
@@ -5,3 +6,17 @@
         <li><a href="https://www.google.com">Google Button</a></li>
     </ul>
 </nav>
+-->
+
+<nav class="navbar navbar-default">
+    <img src="{{url_for('static', filename='images/flask_font.png') }}" alt="">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Flask App</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href=" {{url_for('index') }} ">Start button</a></li>
+        <li><a href="https://www.google.com">Google Button</a></li>
+      </ul>
+    </div>
+  </nav>
