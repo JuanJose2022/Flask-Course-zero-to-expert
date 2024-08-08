@@ -9,10 +9,14 @@
 {% endblock %}
 
 {% block content %}
-    {% if user_ip   %}
-        <h2>Hows you doing, your IP adress is: {{user_ip}}</h2>
+    {% if username   %}
+        <h1> Wellcome user {{username}} </h1>
+    {% endif  %}
 
-        {% else  %}
+    {% if user_ip   %}
+        <h2> How's you doing ¡¡¡, your IP adress is: {{user_ip}}</h2>
+
+    {% else  %}
         <a href= "{{url_for('index') }}"> Make a cookie</a>
     {% endif  %}
 

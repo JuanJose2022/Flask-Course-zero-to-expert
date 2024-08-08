@@ -27,16 +27,25 @@ def index():              #Request object for obtaining all client information
     session["user_ip_information"] = user_ip_information   #Encrypted
     return response
 
-@app.route("/show_information_address")
+@app.route("/show_information_address", methods=["GET", "POST"])
 def show_information():
    #user_ip = request.cookies.get("user_ip_information") 
     user_ip = session.get("user_ip_information")
+    username = session.get("username")
+
     login_form = LoginForm()
     context = {
         "user_ip": user_ip,
         "items":items,
-        "login_form":login_form
-     }                                           #context=context           
+        "login_form":login_form,
+        "username": username
+     }
+    if login_form.validate_on_submit():
+        username = login_form.username.data
+        session["username"] = username              
+        return make_response(redirect("/inde"))
+    
+                                     #context=context           
     return render_template("ip_information.html", **context) 
 app.run(host='0.0.0.0' , port=5000, debug='True') # Accesing from anywhere ip adress on our app on the port..
                                     #activate to show errors in development else not in productions
