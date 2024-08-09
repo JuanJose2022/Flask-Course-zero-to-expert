@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
+import unittest
 
 app = Flask(__name__) #Refering the flask server to this archive
 bootstrap = Bootstrap(app)
@@ -14,7 +15,14 @@ items =["rice", "bread", "pupetter", "tomate" ]
 class LoginForm(FlaskForm):
     username = StringField("User Name: ", validators=[DataRequired()])
     password = PasswordField("Password: ", validators=[DataRequired()])
-    submit = SubmitField("Send Data: ", validators=[DataRequired()])
+    submit = SubmitField("Send Data: ")
+
+
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover("tests")
+    unittest.TextTestRunner().run(tests)
+
 @app.errorhandler(404)
 def not_found_endpoint(error):
     return render_template('404.html', error=error)
@@ -48,5 +56,7 @@ def show_information():
         return redirect(url_for("index")) #url_for: To clean and update the screen 
                                      #context=context           
     return render_template("ip_information.html", **context) 
-app.run(host='0.0.0.0' , port=5000, debug='True') # Accesing from anywhere ip adress on our app on the port..
+
+if __name__== "__main__":
+    app.run(host='0.0.0.0' , port=5000, debug='True') # Accesing from anywhere ip adress on our app on the port..
                                     #activate to show errors in development else not in productions

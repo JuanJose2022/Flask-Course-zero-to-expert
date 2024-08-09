@@ -2,31 +2,29 @@
 {% import 'macros.html' as macros %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
-
 {% block title %}
     {{ super() }} 
     welcome to Flask Project
 {% endblock %}
 
 {% block content %}
-    {% if username   %}
-        <h1> Wellcome user {{username}} </h1>
-    {% endif  %}
+    {% if username %}
+        <h1>Welcome user {{ username }}</h1>
+    {% endif %}
 
-    {% if user_ip   %}
-        <h2> How's you doing ¡¡¡, your IP adress is: {{user_ip}}</h2>
+    {% if user_ip %}
+        <h2>How's you doing ¡¡¡, your IP address is: {{ user_ip }}</h2>
+    {% else %}
+        <a href="{{ url_for('index') }}">Make a cookie</a>
+    {% endif %}
 
-    {% else  %}
-        <a href= "{{url_for('index') }}"> Make a cookie</a>
-    {% endif  %}
-
-    <div class="contaniner">
-        {{wtf.quick_form(login_form) }}
+    <div class="container">
+        {{ wtf.quick_form(login_form) }}
     </div>
 
     <ul>
     {% for item in items %}
-        {{macros.render_items(item)}}
-    {% endfor  %}
+        {{ macros.render_items(item) }}
+    {% endfor %}
     </ul>
 {% endblock %}
