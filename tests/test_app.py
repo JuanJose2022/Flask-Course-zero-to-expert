@@ -24,15 +24,12 @@ class MainTest(TestCase): #Heritating TestCase
         response = self.client.get(url_for("show_information"))
         self.assert200(response)
 
-    def test_show_information_post(self):
-        test_form_fake = {
-            "username": "J",
-            "password": "33"
-        }
-        response = self.client.post(url_for("show_information"), data=test_form_fake)
+    def test_show_information_post(self):   
+        response = self.client.post(url_for("show_information"))
        # self.assertRedirects(response, url_for("index"))     #  If I need to assert the full URL        #_external=True: generates an absolute URL
-        self.assertEqual(response.location, url_for("index", _external=False)) #If I need to assert the relative URL
-    
+       # self.assertEqual(response.location, url_for("index", _external=False)) #If I need to assert the relative URL
+        self.assert405(response) #If I need to assert the relative URL
+  
     def test_auth_blueprint_exists_module(self):
         self.assertIn("auth", self.app.blueprints)
     
@@ -44,3 +41,14 @@ class MainTest(TestCase): #Heritating TestCase
         self.client.get(url_for("auth.login")) # Flask Signals: It allows reutilizes the response  
         self.assertTemplateUsed("login.html")
         
+    def test_auth_blueprint_login_post(self):
+
+        test_form_fake = {
+            "username": "J",
+            "password": "33"
+        }
+        response = self.client.post(url_for("auth.login"), data=test_form_fake)
+      # self.assertRedirects(response, url_for("index", _external=True))
+       # self.assertEqual(response.location, url_for("index"))  
+        self.assertEqual(response.location, url_for("index", _external=False))
+      

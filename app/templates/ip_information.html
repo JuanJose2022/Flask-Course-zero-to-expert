@@ -18,10 +18,6 @@
         <a href="{{ url_for('index') }}">Make a cookie</a>
     {% endif %}
 
-    <div class="container">
-        {{ wtf.quick_form(login_form) }}
-    </div>
-
     <ul>
     {% for item in items %}
         {{ macros.render_items(item) }}
