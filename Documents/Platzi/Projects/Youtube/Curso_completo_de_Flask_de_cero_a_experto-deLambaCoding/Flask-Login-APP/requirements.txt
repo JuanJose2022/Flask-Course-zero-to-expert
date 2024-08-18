@@ -1,0 +1,14 @@
+Flask-Bcrypt #Encrypt the dataUser or to hash the password before to send to the DB
+Flask
+Flask-Bootstrap
+Flask-SQLAlchemy
+Flask-Login
+WTForms
+SQLAlchemy
+Flask-WTF
+email_validator
+#Web Scraping 
+#BeautifulSoup: #A Python library used for parsing HTML and XML documents, making it easy to extract data from web pages.
+bs4
+requests #A Python library used to send HTTP requests, allowing you to easily interact with web services and retrieve data from websites.
+lxml #A Python library that provides a powerful and fast XML and HTML parsing tool, often used with BeautifulSoup for parsing complex documents.
